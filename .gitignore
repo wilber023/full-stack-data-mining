@@ -2,3 +2,5 @@
 /dist
 /build
 /.env
+/superstore_crudo.csv
+/venv

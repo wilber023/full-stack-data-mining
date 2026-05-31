@@ -1,0 +1,96 @@
+{
+  "regression": {
+    "model_name": "Gradient Boosting",
+    "metrics": {
+      "MAE": 22.06,
+      "RMSE": 154.52,
+      "R²": 0.6343
+    }
+  },
+  "classification": {
+    "model_name": "Decision Tree",
+    "metrics": {
+      "F1-macro": 0.8992,
+      "ROC-AUC": 0.9542,
+      "Precision": 0.909,
+      "Recall": 0.8902
+    }
+  },
+  "training_date": "2026-05-29T23:50:52.962709",
+  "feature_names": [
+    "Sales",
+    "Quantity",
+    "Discount",
+    "Shipping_Days",
+    "Ship_Mode",
+    "Segment",
+    "Category",
+    "Sub_Category",
+    "Region"
+  ],
+  "numeric_features": [
+    "Sales",
+    "Quantity",
+    "Discount",
+    "Shipping_Days"
+  ],
+  "categorical_features": [
+    "Ship_Mode",
+    "Segment",
+    "Category",
+    "Sub_Category",
+    "Region"
+  ],
+  "train_size": 7995,
+  "test_size": 1999,
+  "all_regression_results": [
+    {
+      "Model": "Linear Regression",
+      "MAE": 60.49,
+      "RMSE": 243.3,
+      "R²": 0.0932
+    },
+    {
+      "Model": "Random Forest",
+      "MAE": 22.1,
+      "RMSE": 168.14,
+      "R²": 0.5669
+    },
+    {
+      "Model": "Gradient Boosting",
+      "MAE": 22.06,
+      "RMSE": 154.52,
+      "R²": 0.6343
+    }
+  ],
+  "all_classification_results": [
+    {
+      "Model": "Logistic Regression",
+      "F1-macro": 0.8989,
+      "ROC-AUC": 0.9812,
+      "Precision": 0.9267,
+      "Recall": 0.8767
+    },
+    {
+      "Model": "K-NN (k=7)",
+      "F1-macro": 0.8889,
+      "ROC-AUC": 0.9553,
+      "Precision": 0.9234,
+      "Recall": 0.8628
+    },
+    {
+      "Model": "Decision Tree",
+      "F1-macro": 0.8992,
+      "ROC-AUC": 0.9542,
+      "Precision": 0.909,
+      "Recall": 0.8902
+    },
+    {
+      "Model": "Naive Bayes",
+      "F1-macro": 0.4716,
+      "ROC-AUC": 0.9014,
+      "Precision": 0.6348,
+      "Recall": 0.6749
+    }
+  ]
+}
