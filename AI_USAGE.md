@@ -1,311 +1,207 @@
-# AI_USAGE.md -- Documentacion de uso de IA en el proyecto
+# AI_USAGE.md
 
-Este documento registra los prompts y fragmentos de codigo generados con asistencia
-de inteligencia artificial durante el desarrollo del proyecto Superstore Analytics.
+# Documentación de Uso de Inteligencia Artificial
 
----
-
-## Tabla de contenidos
-
-1. [Herramienta utilizada](#herramienta-utilizada)
-2. [Prompts utilizados por componente](#prompts-utilizados-por-componente)
-3. [Fragmentos de codigo complejos asistidos por IA](#fragmentos-de-codigo-complejos-asistidos-por-ia)
-4. [Decisiones de diseno influenciadas por IA](#decisiones-de-diseno-influenciadas-por-ia)
+Este documento registra el uso de herramientas de Inteligencia Artificial durante el desarrollo del proyecto **Superstore Analytics**. La IA fue utilizada como asistente de desarrollo (pair programming) para acelerar la implementación de componentes complejos, mientras que las decisiones arquitectónicas, la integración de componentes, la validación de resultados y los ajustes finales fueron realizados por el autor del proyecto.
 
 ---
 
-## Herramienta utilizada
+# Herramientas utilizadas
 
-| Campo | Valor |
-|-------|-------|
-| Asistente | Antigravity (Google DeepMind) |
-| Modelo | Gemini / Claude |
-| Tipo de uso | Pair programming interactivo |
-| Periodo | Mayo 2026 |
+| Herramienta | Uso |
+|------------|-----|
+| Antigravity | Generación y refinamiento de código |
+| Claude | Refactorización, arquitectura y mejoras de diseño |
+| Gemini | Apoyo en generación de código y documentación |
 
----
-
-## Prompts utilizados por componente
-
-### Prompt 1 -- Definicion general del proyecto
-
-> Quiero que trabajes sobre el siguiente proyecto [...] trabaja sobre los archivos
-> que estan en las carpetas de data, backend, notebook. Quiero que los modelos
-> preentrenados se guarden en la carpeta de saved_models, el dataset es el que esta
-> en la carpeta dentro de data en raw, y que se visualice en la carpeta de cliente.
-> Crea dos componentes para visualizar.
-
-**Componentes generados**: Todo el pipeline de 4 capas (warehouse, notebook, backend, frontend).
+**Periodo de uso:** Mayo 2026
 
 ---
 
-### Prompt 2 -- Backend: DuckDB Star-Schema + FastAPI
+# Rol de la IA en el proyecto
 
-> [Parte de las instrucciones del proyecto]
-> Actividad 2 -- Data Warehouse: organizar los datos para que el analisis sea
-> interactivo, dimensional y eficiente.
+La Inteligencia Artificial fue utilizada principalmente para:
 
-**Archivos generados**:
+- Generar estructuras base de código.
+- Proponer soluciones técnicas para problemas específicos.
+- Generar consultas SQL y componentes de interfaz.
+- Refactorizar código existente.
+- Sugerir mejoras de arquitectura y organización del proyecto.
 
-- `backend/app/database.py` -- Construccion del esquema estrella y 7 consultas OLAP
-- `backend/app/main.py` -- Endpoints REST con FastAPI
-- `backend/app/models.py` -- Esquemas Pydantic de request/response
-- `backend/app/pipeline.py` -- Carga de modelos e inferencia
+Las decisiones sobre:
 
----
+- Arquitectura general.
+- Organización del repositorio.
+- Integración de componentes.
+- Selección de tecnologías.
+- Validación de resultados.
+- Ajustes finales de diseño.
 
-### Prompt 3 -- Notebook: EDA + ML
-
-> Actividad 1 -- EDA y preprocesamiento: entender que hay en los datos y dejarlos
-> listos antes de tocar un modelo.
-> Actividad 3 -- Machine Learning: regresion y clasificacion con metodologia rigurosa.
-
-**Archivo generado**: `notebook/eda_reproducible.ipynb`
-
-Pipeline completo: carga, limpieza, feature engineering, split estratificado,
-entrenamiento de 3 modelos de regresion + 4 de clasificacion, comparacion y exportacion.
+fueron realizadas por el autor del proyecto.
 
 ---
 
-### Prompt 4 -- Frontend: Componentes React
+# Prompts utilizados
 
-> Quiero que se visualice en la carpeta de cliente, crea dos componentes para
-> visualizar.
+## Prompt 1 — Construcción general del proyecto
 
-**Archivos generados iniciales**:
+> Quiero que trabajes sobre el siguiente proyecto de minería de datos utilizando las carpetas data, notebook, backend y client. Los modelos entrenados deben guardarse en saved_models. El sistema debe incluir análisis exploratorio, warehouse dimensional, modelos de machine learning, API REST y visualización web.
 
-- `client/src/components/OLAPDashboard.tsx` -- Dashboard con 5 graficas Recharts
-- `client/src/components/Predictor.tsx` -- Formulario de prediccion + resultados
-- `client/src/App.tsx` -- Navegacion por tabs
+**Resultado:**
 
----
-
-### Prompt 5 -- Rediseno monocromatico
-
-> Aplica un esquema estrictamente monocromatico o acromatico, evitando los colores
-> de fondo muy oscuros, evitando los colores fosforescente, quita los emojis y
-> ponles iconos de react. Lo que buscamos es que sea un producto funcional que
-> pueda verse los datos que se busca mostrar sin que otra cosa distraiga al usuario.
-
-**Cambios aplicados**:
-
-- Toda la paleta de colores se redujo a escala de grises (#1a1a1a a #fafafa)
-- Todos los emojis reemplazados por iconos de `react-icons` (Tabler Icons, Heroicons)
-- Fondo claro (#f8f8fa) en lugar de oscuro
-- Graficas con tonos monocromaticos
+- Estructura general del proyecto.
+- Organización del pipeline completo.
+- Integración entre notebook, backend y frontend.
 
 ---
 
-### Prompt 6 -- Refactorizacion Clean Architecture + MVVM
+## Prompt 2 — Data Warehouse y Backend
 
-> Actua como un Arquitecto de Software experto en Front-End. Tu objetivo es
-> refactorizar el codigo de la carpeta cliente separando la interfaz de usuario
-> (UI) de la logica de negocio.
->
-> Aplica estrictamente las siguientes directrices de diseno:
-> 1. Arquitectura Limpia (Clean Architecture)
-> 2. Patron MVVM
-> 3. Principios SOLID
-> 4. Mantenibilidad y Escalabilidad
-> 5. Mejora un poco el diseno, minimalista y graficas cientificas
+> Implementa un Data Warehouse dimensional utilizando DuckDB con esquema estrella y expón consultas OLAP mediante FastAPI.
 
-**Archivos generados** (16 archivos nuevos, 2 eliminados):
+**Archivos generados o refinados:**
 
-Capa Core (Dominio):
-- `core/models/olap.types.ts` -- Entidades OLAP
-- `core/models/prediction.types.ts` -- Entidades ML + constantes
-- `core/ports/IOlapRepository.ts` -- Interfaz OLAP
-- `core/ports/IPredictionRepository.ts` -- Interfaz ML
+- `backend/app/database.py`
+- `backend/app/main.py`
+- `backend/app/models.py`
+- `backend/app/pipeline.py`
 
-Capa Data:
-- `data/api/apiClient.ts` -- Wrapper HTTP
-- `data/repositories/OlapRepository.ts` -- Implementacion OLAP
-- `data/repositories/PredictionRepository.ts` -- Implementacion ML
+**Mi decisión:**
 
-Capa Presentation:
-- `presentation/viewmodels/useDashboardViewModel.ts` -- ViewModel Dashboard
-- `presentation/viewmodels/usePredictorViewModel.ts` -- ViewModel Predictor
-- `presentation/views/DashboardView.tsx` -- Vista pasiva Dashboard
-- `presentation/views/PredictorView.tsx` -- Vista pasiva Predictor
-- `presentation/components/StatCard.tsx` -- Componente reutilizable
-- `presentation/components/ChartCard.tsx` -- Componente reutilizable
-- `presentation/components/ChartTooltip.tsx` -- Tooltip cientifico
-- `presentation/components/MetricBadge.tsx` -- Badge de metrica
-- `presentation/utils/formatters.ts` -- Funciones de formateo
+Mantener una arquitectura modular para facilitar futuras modificaciones y separación de responsabilidades.
 
 ---
 
-## Fragmentos de codigo complejos asistidos por IA
+## Prompt 3 — EDA y Machine Learning
 
-### Fragmento 1 -- Construccion del esquema estrella (database.py)
+> Realiza el análisis exploratorio, limpieza de datos, feature engineering y entrenamiento de modelos de regresión y clasificación siguiendo una metodología reproducible.
 
-El fragmento mas complejo del proyecto. Construye 4 tablas dimensionales y
-una tabla de hechos con surrogate keys usando merge en lugar de map (para
-evitar `InvalidIndexError` con claves duplicadas):
+**Resultado:**
 
-```python
-# Mapear surrogate keys usando merge para manejar duplicados
-cust_lookup = dim_customer.drop_duplicates(subset=["Customer_ID"])[["Customer_ID", "customer_key"]]
-prod_lookup = dim_product.drop_duplicates(subset=["product_id"])[["product_id", "product_key"]]
-
-fact = fact.merge(cust_lookup, on="Customer_ID", how="left")
-fact = fact.merge(prod_lookup, on="product_id", how="left")
-fact = fact.merge(dim_geography[["geo_key"] + geo_cols_lower], on=geo_cols_lower, how="left")
-fact = fact.merge(date_lookup.rename(columns={"full_date": "order_date"}),
-                  on="order_date", how="left").rename(columns={"date_key": "date_key"})
-fact = fact.merge(date_lookup.rename(columns={"full_date": "ship_date", "date_key": "ship_date_key"}),
-                  on="ship_date", how="left")
-```
-
-**Por que es complejo**: El dataset tiene claves naturales duplicadas (un mismo
-Customer_ID aparece multiples veces). Usar `map` con un diccionario falla cuando
-hay indices duplicados. La solucion fue usar `merge` con `drop_duplicates` previo.
+- Notebook de análisis.
+- Comparación de modelos.
+- Exportación de modelos entrenados.
+- Generación de métricas de evaluación.
 
 ---
 
-### Fragmento 2 -- Estimacion de Shipping_Days en inferencia (pipeline.py)
+## Prompt 4 — Frontend inicial
 
-El modelo fue entrenado con una feature `Shipping_Days` calculada como la
-diferencia entre Ship_Date y Order_Date. En inferencia, el usuario no provee
-fechas, asi que se estima basandose en el modo de envio:
+> Crea una interfaz web para visualizar métricas OLAP y realizar predicciones sobre nuevas órdenes.
 
-```python
-def _prepare_input(features: dict) -> pd.DataFrame:
-    shipping_days_map = {
-        "Same Day": 0,
-        "First Class": 2,
-        "Second Class": 3,
-        "Standard Class": 5,
-    }
-    shipping_days = shipping_days_map.get(features["ship_mode"], 4)
+**Resultado:**
 
-    data = {
-        "Sales":         [features["sales"]],
-        "Quantity":      [features["quantity"]],
-        "Discount":      [features["discount"]],
-        "Shipping_Days": [shipping_days],
-        "Ship_Mode":     [features["ship_mode"]],
-        "Segment":       [features["segment"]],
-        "Category":      [features["category"]],
-        "Sub_Category":  [features["sub_category"]],
-        "Region":        [features["region"]],
-    }
-    return pd.DataFrame(data)
-```
-
-**Por que es complejo**: Hay un desajuste entre las features de entrenamiento
-(que incluyen `Shipping_Days`) y las features disponibles en inferencia (el
-usuario no conoce la fecha de envio futura). Se resolvio con un mapeo basado
-en los promedios observados del dataset.
+- Dashboard analítico.
+- Formulario de predicción.
+- Integración con la API.
 
 ---
 
-### Fragmento 3 -- ViewModel con inyeccion de dependencias (useDashboardViewModel.ts)
+## Prompt 5 — Mejora visual
 
-Hook personalizado que implementa el patron MVVM con inyeccion del repositorio
-a traves de la interfaz (Dependency Inversion):
+> Simplifica el diseño utilizando una interfaz profesional, minimalista y enfocada en la visualización de datos.
 
-```typescript
-export function useDashboardViewModel(repo: IOlapRepository): DashboardViewModel {
-  const [state, setState] = useState<DashboardState>({...});
+**Resultado:**
 
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      try {
-        const [cat, reg, trend, disc, seg, sub] = await Promise.all([
-          repo.getSalesByCategory(),
-          repo.getSalesByRegion(),
-          repo.getMonthlyTrend(),
-          repo.getDiscountImpact(),
-          repo.getProfitBySegment(),
-          repo.getSubcategoryAnalysis(),
-        ]);
-        if (!cancelled) {
-          setState({ ...data, loading: false, error: null });
-        }
-      } catch (err) {
-        if (!cancelled) setState(prev => ({ ...prev, loading: false, error: String(err) }));
-      }
-    }
-    load();
-    return () => { cancelled = true; };
-  }, [repo]);
-
-  const kpis = useMemo<DashboardKPIs>(() => {
-    // KPIs derivados calculados con useMemo
-  }, [state.salesByCategory, state.profitBySegment, state.subcategoryData]);
-
-  return { state, kpis, trendData };
-}
-```
-
-**Por que es complejo**: Combina multiples patrones en un solo hook:
-- Inyeccion de dependencias via parametro (DIP)
-- Cancellation pattern para evitar actualizaciones tras desmontaje
-- `useMemo` para KPIs derivados (evita recalculos innecesarios)
-- Carga paralela con `Promise.all`
+- Eliminación de elementos distractores.
+- Paleta monocromática.
+- Componentes reutilizables.
+- Mejor presentación de métricas y gráficas.
 
 ---
 
-### Fragmento 4 -- Consultas OLAP con JOINs dimensionales (database.py)
+## Prompt 6 — Refactorización arquitectónica
 
-Consultas SQL que explotan el esquema estrella para agregar datos multidimensionalmente:
+> Refactoriza el frontend aplicando Clean Architecture, MVVM y principios SOLID para que el proyecto sea escalable y mantenible.
 
-```sql
-SELECT
-    f.discount,
-    ROUND(AVG(f.profit), 2) AS avg_profit,
-    ROUND(AVG(f.sales), 2) AS avg_sales,
-    COUNT(*) AS order_count,
-    ROUND(SUM(CASE WHEN f.is_profitable = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 1)
-        AS pct_profitable
-FROM fact_sales f
-GROUP BY f.discount
-ORDER BY f.discount
-```
+**Resultado:**
 
-**Por que es complejo**: La columna `pct_profitable` calcula un porcentaje
-condicional inline usando `CASE WHEN` dentro de un `SUM`, dividido por `COUNT`.
-Esto evita una subconsulta y mantiene el rendimiento.
+- Separación entre dominio, datos y presentación.
+- Implementación de ViewModels.
+- Repositorios desacoplados.
+- Componentes reutilizables.
+
+**Mi decisión:**
+
+Solicité explícitamente una arquitectura limpia para mejorar mantenibilidad, escalabilidad y facilidad de extensión del proyecto.
 
 ---
 
-### Fragmento 5 -- Composition Root con inyeccion de dependencias (App.tsx)
+# Fragmentos complejos asistidos por IA
 
-Punto unico donde las dependencias concretas se instancian e inyectan:
+## Construcción del esquema estrella
 
-```tsx
-function App() {
-  const olapRepo = useMemo(() => new OlapRepository(), []);
-  const predRepo = useMemo(() => new PredictionRepository(), []);
+La IA generó gran parte de la lógica para:
 
-  const dashboardVm = useDashboardViewModel(olapRepo);
-  const predictorVm = usePredictorViewModel(predRepo);
+- Crear dimensiones.
+- Generar surrogate keys.
+- Construir la tabla de hechos.
+- Relacionar entidades mediante JOINs.
 
-  return (
-    <>
-      <DashboardView vm={dashboardVm} />
-      <PredictorView vm={predictorVm} />
-    </>
-  );
-}
-```
-
-**Por que es complejo**: Es el unico archivo que conoce las implementaciones
-concretas. Los ViewModels solo ven interfaces. `useMemo(() => new Repo(), [])`
-garantiza que la instancia es estable y no causa re-renders infinitos.
+Posteriormente se realizaron ajustes manuales para garantizar consistencia de datos.
 
 ---
 
-## Decisiones de diseno influenciadas por IA
+## Pipeline de inferencia
 
-| Decision | Justificacion |
-|----------|---------------|
-| Usar `merge` en lugar de `map` para surrogate keys | Evitar `InvalidIndexError` con claves duplicadas en pandas |
-| Estimar `Shipping_Days` por modo de envio | La feature existe en entrenamiento pero no en inferencia |
-| ColumnTransformer con `StandardScaler` + `OneHotEncoder` | Prevenir data leakage encapsulando preprocesamiento en el pipeline |
-| DuckDB en lugar de SQLite | Optimizado para consultas analiticas OLAP (columnar) |
-| Custom hooks como ViewModels | Alineacion natural con el modelo reactivo de React |
-| Inyeccion de dependencias via parametro | Permite testing sin DOM y sustitucion de implementaciones |
-| JetBrains Mono para valores numericos | Tipografia monoespaciada mejora la legibilidad de metricas |
+La IA generó la estructura base de carga de modelos y predicción.
+
+Se adaptó manualmente para:
+
+- Mantener compatibilidad con las features del entrenamiento.
+- Estimar `Shipping_Days` durante inferencia.
+- Integrar los modelos exportados desde el notebook.
+
+---
+
+## Consultas OLAP
+
+La IA generó consultas SQL utilizadas para:
+
+- Ventas por categoría.
+- Ventas por región.
+- Tendencia mensual.
+- Profit por segmento.
+- Impacto del descuento.
+- Análisis por subcategoría.
+
+Estas consultas fueron integradas al esquema dimensional implementado en DuckDB.
+
+---
+
+## Frontend con arquitectura limpia
+
+La IA generó la estructura inicial basada en:
+
+- Clean Architecture.
+- MVVM.
+- Principios SOLID.
+
+Posteriormente se realizaron ajustes para:
+
+- Mejorar navegación.
+- Optimizar visualización.
+- Integrar correctamente la API desarrollada.
+
+---
+
+# Decisiones de diseño influenciadas por IA
+
+| Decisión | Justificación |
+|-----------|---------------|
+| DuckDB como motor OLAP | Excelente rendimiento analítico sin requerir servidor externo |
+| Esquema estrella | Simplifica consultas multidimensionales |
+| FastAPI | Desarrollo rápido de API REST tipada |
+| ColumnTransformer | Encapsula el preprocesamiento y evita data leakage |
+| OneHotEncoder | Adecuado para variables categóricas sin orden natural |
+| Clean Architecture | Facilita mantenimiento y escalabilidad |
+| MVVM | Separa la lógica de negocio de la interfaz |
+| SOLID | Reduce acoplamiento y mejora extensibilidad |
+
+---
+
+# Declaración final
+
+La Inteligencia Artificial fue utilizada como herramienta de asistencia para generar y refactorizar código, así como para proponer soluciones técnicas. Sin embargo, la definición del alcance, las decisiones arquitectónicas, la integración de componentes, la validación de resultados y la adaptación final del sistema fueron realizadas por el autor del proyecto.
+
+El uso de IA permitió acelerar el desarrollo sin sustituir el proceso de análisis, evaluación y toma de decisiones requerido durante la construcción del proyecto.
