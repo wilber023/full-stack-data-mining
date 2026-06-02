@@ -37,16 +37,15 @@ Antes de comenzar, asegurate de tener instalado:
 | npm | 9+ | `npm --version` |
 | Kaggle CLI | (cualquiera) | `kaggle --version` |
 
-### Configurar credenciales de Kaggle
+### Configuración Automática de Kaggle
 
-El dataset se descarga desde Kaggle. Necesitas un archivo `kaggle.json` con tus credenciales:
+El script descarga el dataset de forma automática. Solo sigue estos pasos la primera vez:
 
-1. Ir a https://www.kaggle.com/settings > API > Create New Token
-2. Se descarga un archivo `kaggle.json`
-3. Colocarlo en:
-   - Windows: `C:\Users\<TU_USUARIO>\.kaggle\kaggle.json`
-   - Linux/Mac: `~/.kaggle/kaggle.json`
-4. Verificar: `kaggle datasets list -s superstore`
+* **Inicia sesión:** Entra a tu cuenta en [Kaggle](https://kaggle.com).
+* **Ejecuta el script:** Corre el programa en tu terminal.
+* **Autoriza el acceso:** Haz clic en **Permitir (Allow)** en la ventana emergente.
+* **Descarga lista:** El dataset se guardará automáticamente en tu equipo.
+
 
 ---
 
