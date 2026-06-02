@@ -57,7 +57,7 @@ fueron realizadas por el autor del proyecto.
 
 ## Prompt 2 — Data Warehouse y Backend
 
-> Implementa un Data Warehouse dimensional utilizando DuckDB con esquema estrella y expón consultas OLAP mediante FastAPI.
+> Estructura el código para implementar un Data Warehouse dimensional con DuckDB (esquema estrella) y expón los endpoints de consultas OLAP utilizando FastAPI.
 
 **Archivos generados o refinados:**
 
@@ -68,22 +68,23 @@ fueron realizadas por el autor del proyecto.
 
 **Mi decisión:**
 
-Mantener una arquitectura modular para facilitar futuras modificaciones y separación de responsabilidades.
+Yo definí la arquitectura del esquema estrella (identificando las dimensiones y la tabla de hechos idóneas para el dataset). La IA se utilizó para agilizar la escritura de la sintaxis SQL y la estructura de FastAPI. La implementación final se logró mediante un proceso iterativo de prueba y error, donde revisé y corregí las salidas generadas por el chat para asegurar que el comportamiento del backend y la integridad de las consultas analíticas se alinearan estrictamente con el diseño planeado para el producto.
 
 ---
 
 ## Prompt 3 — EDA y Machine Learning
 
-> Realiza el análisis exploratorio, limpieza de datos, feature engineering y entrenamiento de modelos de regresión y clasificación siguiendo una metodología reproducible.
+> Proporciona la sintaxis para el pipeline de preprocesamiento, la configuración de los modelos de regresión/clasificación y la generación de métricas de evaluación.
 
 **Resultado:**
 
-- Notebook de análisis.
-- Comparación de modelos.
-- Exportación de modelos entrenados.
-- Generación de métricas de evaluación.
+- Código base para el flujo de datos en el notebook.
+- Estructuración de scripts para la comparación de modelos.
+- Funciones para la exportación de métricas y artefactos.
 
----
+**Mi decisión:**
+
+La estrategia analítica fue guiada por mí de principio a fin. El desarrollo del pipeline y el entrenamiento se realizaron bajo un enfoque riguroso de prueba y error: iteré sobre el código, ajusté los hiperparámetros y verifiqué constantemente los resultados con la asistencia de la IA hasta lograr métricas estables que garantizaran un alto índice de confianza y evitaran el sobreajuste o la fuga de datos (*data leakage*). Utilicé el chat como un filtro de validación técnica para comprobar que las salidas y el comportamiento de los modelos (regresión y clasificación) fueran exactamente acordes a lo planificado metodológicamente.
 
 ## Prompt 4 — Frontend inicial
 
